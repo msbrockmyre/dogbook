@@ -16,6 +16,12 @@
                     </button>
                     <strong class="likes-count">{{ image.likes }}</strong>
                     &nbsp; - &nbsp; Posted: <em class="text-muted">{{ timeago image.timestamp }}</em>
+                    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+                    <link href="path/to/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+                    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+                    <script src="path/to/js/star-rating.js" type="text/javascript"></script>
+                    <script src="path/to/themes/krajee-svg/theme.js"></script>
+                    <script src="path/to/js/locales/<lang>.js"></script>
                </div>
             <div class="col-md-4 text-right">
                 <button class="btn btn-danger" id="btn-delete" data-id="{{ image.uniqueId }}">
