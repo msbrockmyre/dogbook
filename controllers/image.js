@@ -101,6 +101,21 @@ module.exports = {
                 }
             });
     },
+    /* rate: function(req, res) {
+        Models.Image.findOne({ filename: { $regex: req.params.image_id } }, 
+            function(err, image) {
+                if (!err && image){
+                    Image.rating = (Image.rating + input of star rating thing)/(number of ratings);
+                    image.save( function(err) {
+                        if (err) {
+                            res.json(err);
+                        } else {
+                            res.json({ 'Average Rating': image.rating})
+                        }
+                    });
+                }
+            });
+     },*/
      comment: function(req, res) {
         Models.Image.findOne({ filename: { $regex: req.params.image_id } },
             function(err, image) {
