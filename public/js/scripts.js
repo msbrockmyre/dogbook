@@ -13,8 +13,10 @@ $(function(){
           });
      });
      $('#input-strs').on('rating.change', function(event, value, caption) {
-    console.log(value);
-    console.log(caption);
+      event.preventDefault();
+      var imgId = $(this).data('id');
+      $post('images/' + imgId + '/rate', { input: value }).done(function(data){});
+      
 });
 
                     

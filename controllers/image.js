@@ -105,8 +105,8 @@ module.exports = {
         Models.Image.findOne({ filename: { $regex: req.params.image_id } }, 
             function(err, image) {
                 if (!err && image){
-                    numrate = numrate + 1;
-                    image.rating = (image.rating + value)/(numrate);
+                    image.numrate = image.numrate + 1;
+                    image.rating = (image.rating + req.params.input)/(image.numrate);
                     image.save( function(err) {
                         if (err) {
                             res.json(err);
