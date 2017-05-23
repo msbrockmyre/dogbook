@@ -101,11 +101,12 @@ module.exports = {
                 }
             });
     },
-    /* rate: function(req, res) {
+     rate: function(req, res) {
         Models.Image.findOne({ filename: { $regex: req.params.image_id } }, 
             function(err, image) {
                 if (!err && image){
-                    Image.rating = (Image.rating + input of star rating thing)/(number of ratings);
+                    numrate = numrate + 1;
+                    image.rating = (image.rating + value)/(numrate);
                     image.save( function(err) {
                         if (err) {
                             res.json(err);
@@ -115,7 +116,7 @@ module.exports = {
                     });
                 }
             });
-     },*/
+     },
      comment: function(req, res) {
         Models.Image.findOne({ filename: { $regex: req.params.image_id } },
             function(err, image) {

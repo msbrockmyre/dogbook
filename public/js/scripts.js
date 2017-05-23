@@ -12,7 +12,10 @@ $(function(){
                $('.likes-count').text(data.likes);
           });
      });
-
+     $('#input-strs').on('rating.change', function(event, value, caption) {
+    console.log(value);
+    console.log(caption);
+});
 
                     
                      $('#btn-delete').on('click', function(event) {

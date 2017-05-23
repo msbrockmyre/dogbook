@@ -8,6 +8,8 @@ var ImageSchema = new Schema({
     filename:       { type: String },
     views:          { type: Number, 'default': 0 },
     likes:          { type: Number, 'default': 0 },
+    rating:         { type: Number, 'default': 0 }, 
+    numrate:        { type: Number, 'default': 0 }
     timestamp:      { type: Date, 'default': Date.now }
 });
 
