@@ -18,7 +18,8 @@ module.exports = function(viewModel, callback){
         viewModel.sidebar = {
             stats: results[0],
             popular: results[1],
-            comments: results[2]
+            comments: results[2],
+            
         };
 
         callback(viewModel);
