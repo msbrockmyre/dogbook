@@ -23,7 +23,7 @@
                     <strong class="likes-count">{{ image.likes }}</strong>
                     &nbsp; - &nbsp; Posted: <em class="text-muted">{{ timeago image.timestamp }}</em>
                     
-                    <input id="input-strs" name="input-id" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5">
+                    <input id="input-strs" name="input-id" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5" data-id="{{ image.uniqueId }}">
                </div>
             <div class="col-md-4 text-right">
                 <button class="btn btn-danger" id="btn-delete" data-id="{{ image.uniqueId }}">

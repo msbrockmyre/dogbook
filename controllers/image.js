@@ -90,6 +90,7 @@ module.exports = {
         Models.Image.findOne({ filename: { $regex: req.params.image_id } },
             function(err, image) {
                 if (!err && image) {
+                    console.log('like function');
                     image.likes = image.likes + 1;
                     image.save(function(err) {
                         if (err) {
@@ -102,11 +103,13 @@ module.exports = {
             });
     },
      rate: function(req, res) {
+        console.log('sad days');
         Models.Image.findOne({ filename: { $regex: req.params.image_id } }, 
             function(err, image) {
                 if (!err && image){
+                    comsole.log('rate function exists!')
                     image.numrate = image.numrate + 1;
-                    image.rating = (image.rating + req.params.rating)/(image.numrate);
+                    image.rating = (image.rating*(image.numrate - 1) + req.params.rating)/(image.numrate);
                     image.save( function(err) {
                         if (err) {
                             res.json(err);
