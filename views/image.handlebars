@@ -1,6 +1,12 @@
-<div class="panel panel-success">
-     <div class="panel-heading">
-          <h2 class="panel-title">{{ image.title }}</h2>
+<head><link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+                    <link href="../public/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+                    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+                    <script src="../public/js/star-rating.js" type="text/javascript"></script>
+                    <script src="../public/js/locales/<lang>.js"></script></head>
+<div>
+<div class="panel panel-success" style="width: 100%;">
+     <div class="panel-heading" style=" background-color: green;">
+          <h2 class="panel-title" style="color: white;">{{ image.title }}</h2>
      </div>
      <div class="panel-body">
           <p>{{ image.description }}</p>
@@ -16,6 +22,8 @@
                     </button>
                     <strong class="likes-count">{{ image.likes }}</strong>
                     &nbsp; - &nbsp; Posted: <em class="text-muted">{{ timeago image.timestamp }}</em>
+                    
+                    <input id="input-strs" name="input-id" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5">
                </div>
             <div class="col-md-4 text-right">
                 <button class="btn btn-danger" id="btn-delete" data-id="{{ image.uniqueId }}">
@@ -24,6 +32,7 @@
             </div>
           </div>
      </div>
+</div>
 </div>
 
 <div class="panel panel-success">

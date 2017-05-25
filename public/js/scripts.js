@@ -12,7 +12,15 @@ $(function(){
                $('.likes-count').text(data.likes);
           });
      });
- $('#btn-delete').on('click', function(event) {
+     $('#input-strs').on('rating.change', function(event, value, caption) {
+      event.preventDefault();
+      var imgId = $(this).data('id');
+      $post('images/' + imgId + '/rate/' + value).done(function(data){});
+      
+});
+
+                    
+                     $('#btn-delete').on('click', function(event) {
         event.preventDefault();
 
         var $this = $(this);
