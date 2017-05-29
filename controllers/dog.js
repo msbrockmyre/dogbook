@@ -28,7 +28,7 @@ module.exports = {
     //    });
     //    
     //},
-    create: function(req, res) {//todo next
+    create: function(dog_name, image_id) {//todo next
         var saveImage = function() {
           console.log(req);
             var dogName = req.body.dog_name;
@@ -37,8 +37,8 @@ module.exports = {
           Models.Dog.find({ name: dogName }, function(err, dogs) {
                 if (dogs.length == 0) { 
                     var newDog = new Models.Dog({
-                                name: req.body.title,
-                                image_ids: [req.body.image_id]
+                                name: dog_name,
+                                image_ids: [image_id]
                             });
                             newDog.save(function(err, dog) {
                                 console.log('Successfully created dog: ' + dog.name);
@@ -46,10 +46,9 @@ module.exports = {
                                 });
                 }
                 else {
-                    dogs[0].image_ids.push(req.body.image_id);
+                    dogs[0].image_ids.push(image_id);
                     dog[0].save(function(err, dog) {
                                 console.log('Successfully updated dog: ' + dog.name);
-                                res.redirect('/dogs/' + dog.name);
                                 });
                 }
           });
