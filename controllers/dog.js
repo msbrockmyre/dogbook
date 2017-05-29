@@ -8,28 +8,29 @@ var fs = require('fs'),
 module.exports = {
     index: function(req, res){
         var viewModel = {
-            images: []
+            images: [],
+            name: {},
+            count: {}
         };
         dog.findOne({ name: { $regex: req.params.dog_id } },
             function(err, dog) {
                 if (err) { throw err; }
                 if (dog) {
                     dog.views = dog.views + 1;
-                    Models.Image.findOne({ filename: { $regex: dog.image_ids[0] } },
-                    function(err, image) {
-                        viewModel.images.push(image);
-                        Models.Image.findOne({ filename: { $regex: dog.image_ids[1] } },
+                    viewModel.name = req.params.dog_id;
+                    viewModel.count = dog.image_ids.length;
+                    for (var i = 0; i<dog.image_ids.length-1; i++) {
+                        Models.Image.findOne({ filename: { $regex: dog.image_ids[i] } },
                         function(err, image) {
                             viewModel.images.push(image);
-                            Models.Image.findOne({ filename: { $regex: dog.image_ids[2] } },
-                            function(err, image) {
-                                    viewModel.images.push(image);
-                                    sidebar(viewModel, function(viewModel) {
-                                        res.render('dog', viewModel);
-                                    });
-                            });
                         });
-                    });
+                    }
+                    Models.Image.findOne({ filename: { $regex: dog.image_ids[dog.image_ids.length-1] } },
+                        function(err, image) {
+                            viewModel.images.push(image);
+                            res.render('dog', viewModel);
+                        });
+                    
 
                 } else {
                     res.redirect('/');
