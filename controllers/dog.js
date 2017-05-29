@@ -40,13 +40,17 @@ module.exports = {
                                 name: req.body.title,
                                 image_ids: [req.body.image_id]
                             });
-                            newImg.save(function(err, image) {
-                                console.log('Successfully inserted image: ' + image.filename);
-                                res.redirect('/images/' + image.uniqueId);
+                            newDog.save(function(err, dog) {
+                                console.log('Successfully created dog: ' + dog.name);
+                                res.redirect('/dogs/' + dog.name);
                                 });
                 }
                 else {
-                    dogs[0].
+                    dogs[0].image_ids.push(req.body.image_id);
+                    dog[0].save(function(err, dog) {
+                                console.log('Successfully updated dog: ' + dog.name);
+                                res.redirect('/dogs/' + dog.name);
+                                });
                 }
           });
         };
