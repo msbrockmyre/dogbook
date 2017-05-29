@@ -41,6 +41,7 @@ module.exports = {
     //    
     //},
     create: function(req, res) {
+        if (req.files.length>0) {
         var saveImage = function() {
           console.log(req);
             var possible = 'abcdefghijklmnopqrstuvwxyz0123456789',
@@ -87,6 +88,10 @@ module.exports = {
         };
 
         saveImage();
+    }
+    else {
+        res.redirect('/');
+    }
     },
      like: function(req, res) {
         Models.Image.findOne({ filename: { $regex: req.params.image_id } },
