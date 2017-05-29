@@ -2,7 +2,7 @@ var fs = require('fs'),
     path = require('path'),
     sidebar = require('../helpers/sidebar'),
     Models = require('../models'),
-    Controllers = require('../controllers'),
+    Dog = require('../controllers/dog'),
     md5 = require('MD5');
     
 module.exports = {
@@ -70,7 +70,7 @@ module.exports = {
                             });
                             newImg.save(function(err, image) {
                                 console.log('Successfully inserted image: ' + image.filename);
-                                Controllers.Dog.create(image.title, image.filename);
+                                Dog.create(image.title, image.filename);
                                 res.redirect('/images/' + image.uniqueId);
                                 });
                 });
