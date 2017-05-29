@@ -31,39 +31,22 @@ module.exports = {
     create: function(req, res) {//todo next
         var saveImage = function() {
           console.log(req);
-            var dogName = req.dog_name;
+            var dogName = req.body.dog_name;
 
   
           Models.Dog.find({ name: dogName }, function(err, dogs) {
                 if (dogs.length == 0) { 
-         //
-          var tempPath = req.files[0].path,
-                ext = path.extname(req.files[0].originalname).toLowerCase(),
-                targetPath = path.resolve('./public/upload/' + imgUrl + ext);
-
-            if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.gif') {
-                fs.rename(tempPath, targetPath, function(err) {
-                    if (err) {
-                        throw err; 
-                    }
-                    var newImg = new Models.Image({
-                        title: req.body.title,
-                        filename: imgUrl + ext,
-                        description: req.body.description
-                    });
-                    newImg.save(function(err, image) {
-                        console.log('Successfully inserted image: ' + image.filename);
-                        res.redirect('/images/' + image.uniqueId);
-                    });
-                });
-            } else {
-                fs.unlink(tempPath, function () {
-                    if (err) throw err;
-
-                    res.json(500, {error: 'Only image files are allowed.'});
-                });
-            }
-           //
+                    var newDog = new Models.Dog({
+                                name: req.body.title,
+                                image_ids: [req.body.image_id]
+                            });
+                            newImg.save(function(err, image) {
+                                console.log('Successfully inserted image: ' + image.filename);
+                                res.redirect('/images/' + image.uniqueId);
+                                });
+                }
+                else {
+                    dogs[0].
                 }
           });
         };

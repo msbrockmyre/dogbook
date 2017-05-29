@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 var DogSchema = new Schema({
     name:          { type: String },
     views:          { type: Number, 'default': 0 },
-    images:    { type: Array }
+    image_ids:    { type: Array }
 });
 
 
