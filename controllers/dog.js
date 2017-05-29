@@ -25,7 +25,7 @@ module.exports = {
                             function(err, image) {
                                     viewModel.images.push(image);
                                     sidebar(viewModel, function(viewModel) {
-                                        res.render('image', viewModel);
+                                        res.render('dog', viewModel);
                                     });
                             });
                         });
