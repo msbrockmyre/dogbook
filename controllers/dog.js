@@ -28,7 +28,9 @@ module.exports = {
                     Models.Image.findOne({ filename: { $regex: dog.image_ids[dog.image_ids.length-1] } },
                         function(err, image) {
                             viewModel.images.push(image);
-                            res.render('dog', viewModel);
+                            sidebar(viewModel, function(viewModel) {
+                                res.render('dog', viewModel);
+                            });
                         });
                     
 
