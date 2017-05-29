@@ -19,7 +19,7 @@ module.exports = function(viewModel, callback){
             stats: results[0],
             popular: results[1],
             comments: results[2],
-            
+            rating: results[3]
         };
 
         callback(viewModel);

@@ -15,7 +15,8 @@ $(function(){
      $('#input-strs').on('rating.change', function(event, value, caption) {
       event.preventDefault();
       var imgId = $(this).data('id');
-      $post('images/' + imgId + '/rate/' + value).done(function(data){});
+      console.log(value);
+      $.post('images/' + imgId + '/rate/' + value).done(function(data){});
       
 });
 

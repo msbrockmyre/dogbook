@@ -39,7 +39,8 @@ module.exports = function(callback) {
             images: results[0],
             comments: results[1],
             views: results[2],
-            likes: results[3]
+            likes: results[3],
+            rating: results[4]
         });
     });
 };
