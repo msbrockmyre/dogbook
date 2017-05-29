@@ -31,18 +31,11 @@ module.exports = {
     create: function(req, res) {//todo next
         var saveImage = function() {
           console.log(req);
-            var possible = 'abcdefghijklmnopqrstuvwxyz0123456789',
-                imgUrl = '';
-
-            for(var i=0; i < 6; i+=1) {
-                imgUrl += possible.charAt(Math.floor(Math.random() * possible.length));
-            }
+            var dogName = req.dog_name;
 
   
-          Models.Image.find({ filename: imgUrl }, function(err, images) {
-                if (images.length > 0) {
-                    saveImage();
-                } else { 
+          Models.Dog.find({ name: dogName }, function(err, dogs) {
+                if (dogs.length == 0) { 
          //
           var tempPath = req.files[0].path,
                 ext = path.extname(req.files[0].originalname).toLowerCase(),
@@ -50,16 +43,18 @@ module.exports = {
 
             if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.gif') {
                 fs.rename(tempPath, targetPath, function(err) {
-                    if (err) throw err;
-                         var newImg = new Models.Image({
-                                title: req.body.title,
-                                filename: imgUrl + ext,
-                                description: req.body.description
-                            });
-                            newImg.save(function(err, image) {
-                                console.log('Successfully inserted image: ' + image.filename);
-                                res.redirect('/images/' + image.uniqueId);
-                                });
+                    if (err) {
+                        throw err; 
+                    }
+                    var newImg = new Models.Image({
+                        title: req.body.title,
+                        filename: imgUrl + ext,
+                        description: req.body.description
+                    });
+                    newImg.save(function(err, image) {
+                        console.log('Successfully inserted image: ' + image.filename);
+                        res.redirect('/images/' + image.uniqueId);
+                    });
                 });
             } else {
                 fs.unlink(tempPath, function () {
@@ -74,40 +69,8 @@ module.exports = {
         };
 
         saveImage();
-    },
-     like: function(req, res) {
-        Models.Image.findOne({ filename: { $regex: req.params.image_id } },
-            function(err, image) {
-                if (!err && image) {
-                    image.likes = image.likes + 1;
-                    image.save(function(err) {
-                        if (err) {
-                            res.json(err);
-                        } else {
-                            res.json({ likes: image.likes });
-                        }
-                    });
-                }
-            });
-    },
-     comment: function(req, res) {
-        Models.Image.findOne({ filename: { $regex: req.params.image_id } },
-            function(err, image) {
-                if (!err && image) {
-                    var newComment = new Models.Comment(req.body);
-                    newComment.gravatar = md5(newComment.email);
-                    newComment.image_id = image._id;
-                    newComment.save(function(err, comment) {
-                        if (err) { throw err; }
-
-                        res.redirect('/images/' + image.uniqueId + '#' + comment._id);
-                    });
-                } else {
-                    res.redirect('/');
-                }
-            });
-        
-    },remove: function(req, res) {
+    }/*,
+    remove: function(req, res) {
         Models.Image.findOne({ filename: { $regex: req.params.image_id } },
             function(err, image) {
                 if (err) { throw err; }
@@ -128,5 +91,5 @@ module.exports = {
                         });
                 });
             });
-    }
+    }*/
 }; 
